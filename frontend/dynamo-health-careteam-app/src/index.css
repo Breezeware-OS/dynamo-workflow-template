@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.amplify-button[data-variation='primary'] {
+  background: rgb(25, 118, 210);
+  margin-bottom: 25px;
+}
+
+.amplify-button[data-variation='primary']:hover {
+  background: rgb(25, 118, 210);
+}
+
+.amplify-tabs {
+  display: none !important;
+  color: rgb(25, 118, 210) !important;
+}
+
+[data-amplify-form] {
+  display: flex;
+  flex-direction: column-reverse;
+}
+[data-amplify-authenticator] [data-amplify-router] {
+  border-color: transparent !important;
+  background-color: white !important;
+  box-shadow: var(--amplify-components-authenticator-router-box-shadow);
+}
+
+.federated-sign-in-container {
+  display: flex !important;
+  flex-direction: column-reverse !important;
+}
+[data-amplify-authenticator] [data-amplify-form] {
+  padding-bottom: 0 !important;
+}
+
+.amplify-authenticator
+  .amplify-form-section
+  .amplify-form-section-body
+  .amplify-form-button
+  .amplify-form-button-right {
+  order: -1 !important;
+}
+
+/* Adjust the spacing between the buttons, if needed */
+.amplify-authenticator
+  .amplify-form-section
+  .amplify-form-section-body
+  .amplify-form-button {
+  margin-top: 10px !important;
+}
+
+.amplify-label {
+  /* display: none !important; */
+}
+
+.data-amplify-authenticator-signup {
+  display: none !important;
+}
+
+.amplify-button--link {
+  /* display: none !important; */
+  margin-bottom: 25px !important;
+  margin-top: 0px !important;
+}
+
+.amplify-button {
+  margin-bottom: 15px !important;
+}
+.federated-sign-in-button {
+  margin-bottom: 0px !important;
+}
+
+.amplify-field__show-password {
+  margin-bottom: 0px !important;
+}
+
+[data-amplify-authenticator] {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+[data-group-id='group-condition'] {
+  display: none;
+}
+
+[data-group-id='group-appearance'] {
+  display: none;
+}
+[data-group-id='group-constraints'] {
+  display: none;
+}
+[data-group-id='group-serialization'] {
+  display: none;
+}
+[data-entry-id='subtype'] {
+  display: none;
+}
+[data-entry-id='undefined-step'] {
+  display: none;
+}
+[data-entry-id='undefined-decimalDigits'] {
+  display: none;
+}
+[data-field-type='taglist'] {
+  display: none !important;
+}
+[data-field-type='spacer'] {
+  display: none !important;
+}
+[data-field-type='image'] {
+  display: none !important;
+}
+
+/* Date picker styles start*/
+
+/* to change text display color */
+.rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+.rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
+  color: black !important;
+}
+
+/* to change current date border color */
+.rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
+  box-shadow: inset 0 0 0 1px #0a5b99 !important;
+}
+
+/* to change hover color */
+.rs-calendar-table-cell-content:hover {
+  background-color: #70a2c9 !important;
+  color: white !important;
+}
+
+/* to change selected range background color */
+.rs-calendar-table-cell-selected .rs-calendar-table-cell-content,
+.rs-calendar-table-cell-in-range .rs-calendar-table-cell-content {
+  background-color: #70a2c9 !important;
+  color: white !important;
+}
+/* to change selected background color */
+.rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
+  background-color: #0a5b99 !important;
+}
+
+/* to change primary button color */
+.rs-btn-primary {
+  background-color: #0a5b99 !important;
+  color: white !important;
+  initial-value: 'kkkkk';
+}
+
+.rs-picker-default:not(.rs-picker-disabled) .rs-picker-toggle-active {
+  border-color: #d7d7d7 !important;
+}
+
+/* not to display past week,yesterday */
+.rs-picker-toolbar-ranges {
+  display: none !important;
+}
+
+.rs-picker-default .rs-picker-toggle {
+  z-index: 0 !important;
+}
+.menuModalContainer {
+  opacity: 0 !important;
+}
+/* Date picker styles end */

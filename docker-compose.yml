@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  backend:
+    image: public.ecr.aws/breezeware/dynamo-workflow-backend:1.0.0
+    container_name: api-server
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./backend/api-app/.env.backend
+    depends_on:
+      - keycloak
+
+  # React JS Frontend
+  patient-frontend:
+    image: public.ecr.aws/breezeware/dynamo-workflow-patient-frontend:1.0.0
+    container_name: react-patient-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_DYNAMO_SERVICE_URL: http://backend:8081/api
+      REACT_APP_KEYCLOAK_URL: http://keycloak:8080
+      REACT_APP_KEYCLOAK_REALM: Test
+      REACT_APP_KEYCLOAK_CLIENT_ID: test
+    depends_on:
+      - backend
+      - keycloak
+
+  # React JS Frontend
+  careteam-frontend:
+    image: public.ecr.aws/breezeware/dynamo-workflow-careteam-frontend:1.0.0
+    container_name: react-careteam-frontend
+    ports:
+      - "3001:3000"
+    environment:
+      REACT_APP_DYNAMO_SERVICE_URL: http://backend:8081/api
+      REACT_APP_KEYCLOAK_URL: http://keycloak:8080
+      REACT_APP_KEYCLOAK_REALM: Test
+      REACT_APP_KEYCLOAK_CLIENT_ID: test
+    depends_on:
+      - backend
+      - keycloak
+
+  # React JS Frontend
+  provider-frontend:
+    image: public.ecr.aws/breezeware/dynamo-workflow-provider-frontend:1.0.0
+    container_name: react-provider-frontend
+    ports:
+      - "3002:3000"
+    environment:
+      REACT_APP_DYNAMO_SERVICE_URL: http://backend:8081/api
+      REACT_APP_KEYCLOAK_URL: http://keycloak:8080
+      REACT_APP_KEYCLOAK_REALM: Test
+      REACT_APP_KEYCLOAK_CLIENT_ID: test
+    depends_on:
+      - backend
+      - keycloak
+
+  postgres:
+    image: postgres:16
+    container_name: keycloak_postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data  # Store the data in the local folder
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.6
+    command:
+      - start-dev
+    container_name: keycloak_server
+    ports:
+      - "8080:8080"
+    volumes:
+      # Custom Keycloak theme folder
+      - './authentication/keycloak-custom-theme/themes/custom-theme/theme:/opt/keycloak/themes'
+    depends_on:
+      - postgres
+    environment:
+      KC_HOSTNAME: localhost
+      KC_PROXY: edge
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_postgres:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: "true"
+      KC_LOG_LEVEL: info
+
+volumes:
+  postgres_data:

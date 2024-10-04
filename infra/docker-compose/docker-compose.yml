@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+
+  web:
+
+  api-service:
+
+networks:
+  ondemand:
+    driver: bridge
+
+volumes:
+  db_data:
+
+

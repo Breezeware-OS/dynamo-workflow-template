@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.breezeware.dynamo.workflow</groupId>
+        <artifactId>api-lib</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <name>Dynamo Health Bootstrapped App</name>
+    <description>Application for bootstrapping Health Showcase Server Services &amp; BFFs</description>
+    <artifactId>api-app</artifactId>
+    <version>1.0.0</version>
+
+    <repositories>
+        <repository>
+            <id>breezeware-dynamo-parent-lib</id>
+            <name>breezeware-dynamo-parent-lib</name>
+            <url>https://breezeware-305251478828.d.codeartifact.us-east-1.amazonaws.com/maven/dynamo-parent-lib/</url>
+        </repository>
+        <repository>
+            <id>breezeware-dynamo-sdk</id>
+            <name>breezeware-dynamo-sdk</name>
+            <url>https://breezeware-305251478828.d.codeartifact.us-east-1.amazonaws.com/maven/dynamo-sdk/</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <dynamo-sdk-lib-bom.version>1.44.0</dynamo-sdk-lib-bom.version>
+        <jib-maven-plugin.container.destination.repository.name>
+            dynamo-workflow-server/${project.artifactId}
+        </jib-maven-plugin.container.destination.repository.name>
+        <jib-maven-plugin.container.source.repository.name>
+            public.ecr.aws/breezeware/eclipse-temurin:latest
+        </jib-maven-plugin.container.source.repository.name>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.breezeware.dynamo</groupId>
+                <artifactId>dynamo-sdk-lib-bom</artifactId>
+                <version>${dynamo-sdk-lib-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.breezeware.dynamo</groupId>
+            <artifactId>dynamo-auth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.breezeware.dynamo</groupId>
+            <artifactId>dynamo-utils</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.breezeware.dynamo.workflow</groupId>
+            <artifactId>dynamo-health-careteam-web-bff</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.breezeware.dynamo.workflow</groupId>
+            <artifactId>dynamo-health-provider-web-bff</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.breezeware.dynamo.workflow</groupId>
+            <artifactId>dynamo-health-patient-web-bff</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <from>
+                        <image>
+                            ${jib-maven-plugin.container.source.repository.name}
+                        </image>
+                    </from>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.breezeware.dynamo</groupId>
+        <artifactId>dynamo-parent-lib</artifactId>
+        <version>2.1.0</version>
+    </parent>
+
+    <groupId>net.breezeware.dynamo.workflow</groupId>
+    <artifactId>api-lib</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>Dynamo Health API and BFF libraries module</name>
+    <description>Dynamo Health API and BFF libraries module</description>
+
+    <modules>
+
+        <module>dynamo-health-server-services</module>
+        <module>dynamo-health-server-bff</module>
+
+    </modules>
+    <properties>
+        <dynamo-sdk-lib-bom.version>1.44.0</dynamo-sdk-lib-bom.version>
+    </properties>
+    <repositories>
+        <repository>
+            <id>breezeware-dynamo-parent-lib</id>
+            <name>breezeware-dynamo-parent-lib</name>
+            <url>https://breezeware-305251478828.d.codeartifact.us-east-1.amazonaws.com/maven/dynamo-parent-lib/</url>
+        </repository>
+        <repository>
+            <id>breezeware-dynamo-sdk</id>
+            <name>breezeware-dynamo-sdk</name>
+            <url>https://breezeware-305251478828.d.codeartifact.us-east-1.amazonaws.com/maven/dynamo-sdk/</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.breezeware.dynamo</groupId>
+                <artifactId>dynamo-sdk-lib-bom</artifactId>
+                <version>${dynamo-sdk-lib-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.breezeware.dynamo</groupId>
+            <artifactId>dynamo-utils</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.breezeware.dynamo</groupId>
+            <artifactId>dynamo-auth</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

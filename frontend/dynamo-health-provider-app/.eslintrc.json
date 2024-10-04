@@ -1,0 +1,88 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "globals": {
+    "localStorage": "readonly",
+    "window": "readonly",
+    "sessionStorage": "readonly",
+    "document": "readonly"
+  },
+  // "parserOptions": {
+  //     "ecmaVersion": "latest"
+  // },
+  "parser": "@babel/eslint-parser",
+
+  "parserOptions": {
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
+
+  "plugins": ["prettier"],
+  "rules": {
+    "spaced-comment": "warn",
+    "react/jsx-filename-extension": "off",
+    "react/no-unescaped-entities": "off",
+    "import/no-unresolved":"off",
+    "no-unused-vars": "warn",
+    "no-undef": "error",
+    "react/function-component-definition": "off",
+    "no-shadow": "off",
+    "quote-props": "warn",
+    "object-shorthand": "warn",
+    "prefer-arrow-callback": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off",
+    "arrow-body-style": "off",
+    "react/no-array-index-key": "warn",
+    "react/jsx-no-constructed-context-values": "off",
+    "no-use-before-define": "off",
+    "array-callback-return": "warn",
+    "no-unsafe-optional-chaining": "warn",
+    "class-methods-use-this": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "react/jsx-one-expression-per-line": "off",
+    "consistent-return": "off",
+    "no-useless-return": "off",
+    "no-return-assign": "off",
+    "no-nested-ternary": "off",
+    "react/jsx-no-bind": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/style-prop-object": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "prefer-regex-literals": "off",
+    "prefer-template": "off",
+    "prefer-destructuring": "off",
+    "react/no-unstable-nested-components": "off",
+    "jsx-a11y/anchor-is-valid": "warn",
+    // "import/no-extraneous-dependencies": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "no-unneeded-ternary": "warn",
+    "no-useless-escape": "off",
+    "no-lone-blocks": "off",
+    "jsx-a11y/alt-text": "warn",
+    "react/no-unknown-property": "warn",
+    "no-param-reassign": "off",
+    "prefer-const": "off",
+    "no-underscore-dangle": "off",
+    "import/no-cycle": "off",
+    "react/jsx-no-useless-fragment":"off"
+  },
+  "ignorePatterns": [
+    // "node_modules/*",
+    // "src/**/*.test.js",
+    // "src/**/test/**/*.js",
+    "*.test.js",
+    "amplify/*"
+  ],
+  "overrides": [
+    {
+      "files": ["*.test.js", "*.spec.js", "amplify/*"],
+      "rules": {
+        "no-undef": "off"
+        // add any other rules you want to disable for test files
+      }
+    }
+  ]
+}
